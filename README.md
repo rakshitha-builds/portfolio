@@ -1,11 +1,5 @@
 # Rakshitha R — Portfolio (Next.js + Tailwind + Framer Motion)
-
-## Local development
-```
-npm install
-npm run dev
-```
-Visit http://localhost:3000
+**Live:** [portfolio-qqwxopxr5-rakshitha13.vercel.app](https://portfolio-qqwxopxr5-rakshitha13.vercel.app/)
 
 ## Build (static export, for GitHub Pages or any static host)
 ```
