@@ -1,26 +1,42 @@
 # Rakshitha R — Portfolio (Next.js + Tailwind + Framer Motion)
-**Live:** [portfolio-qqwxopxr5-rakshitha13.vercel.app](https://portfolio-qqwxopxr5-rakshitha13.vercel.app/)
 
-## Build (static export, for GitHub Pages or any static host)
+## Local development
+```
+npm install
+npm run dev
+```
+Visit http://localhost:3000
+
+## Production build (static export)
 ```
 npm run build
 ```
-This outputs a fully static site to `/out` — upload that folder's contents
-directly to GitHub Pages, Netlify, or any static host.
+Outputs a fully static site to `/out`. On Vercel just push to GitHub — no config needed.
 
-## Deploy on Vercel instead (recommended for Next.js)
-Push this repo to GitHub and import it at vercel.com/new — zero config needed,
-`next.config.mjs` is already set to static export but Vercel will also happily
-run it as a normal Next.js app.
+## Adding more projects
+Open `data/site.js`, find `export const projects`, and append another object with the same shape
+(title, tagline, problem / approach / result, highlights, stack, `live`, `github`, `visual`).
+It appears automatically as a new stacking card in "Selected Works". Only the projects in that
+array are shown, so keep it to the ones you want to feature (currently 3).
+For a screenshot visual, put the image in `public/images/` and use `visual: { type: 'screenshot', src, width, height, alt }`.
+
+## Editing content
+All copy, links, skills, projects, experience and education live in **`data/site.js`**.
+- Add a project's `github` or `live` URL there and its button appears automatically
+  (Opto / IMA currently has neither because no URL was provided).
+- Replace `public/resume.pdf` to update the resume (nav, hero and contact all link to it).
+- Replace `public/images/campusiq-login.webp` / `learnsphere-login.webp` to update the project visuals.
 
 ## Structure
-- `app/` — Next.js App Router pages, layout, global styles
-- `components/` — one component per section (Hero, About, Skills, Projects,
-  Experience, Education, ResumeCta, Contact, Footer) plus shared animation
-  helpers (`Reveal.jsx`, `Stagger.jsx`)
-- `public/resume.pdf` — your resume, linked from the nav, hero, and resume section
+- `app/` — App Router layout (fonts, metadata, JSON-LD), page, global styles, favicon (`icon.svg`)
+- `components/` — one component per section plus shared helpers
+  (`Reveal`, `CountUp`, `ScrollProgress`, `SectionHeading`, `TechIcon`, `Providers`)
+- `data/site.js` — content
+- `public/icons/` — self-hosted technology logos (from the devicon set)
+- `public/images/` — project visuals
 
 ## Notes
-- The contact form uses the same EmailJS integration as before (service/template/key
-  already wired in `components/Contact.jsx`)
-- Skill icons load from the devicon CDN at runtime — no local assets needed
+- Fonts (Space Grotesk, Inter, JetBrains Mono) are self-hosted via `@fontsource-variable`; no external font or icon CDN.
+- The circle cursor (`components/CustomCursor.jsx`) only runs on mouse/trackpad devices, never on touch.
+- The contact form uses EmailJS; its IDs are in `data/site.js`.
+- Animations respect `prefers-reduced-motion`.

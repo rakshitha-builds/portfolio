@@ -1,76 +1,76 @@
-'use client';
-
 import { ArrowUp } from 'lucide-react';
+import { navLinks, site } from '@/data/site';
 import { GithubIcon, LinkedinIcon, EmailIcon } from './SocialIcons';
 
-const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#education', label: 'Education' },
-  { href: '#contact', label: 'Contact' },
-];
-
-const socialLinks = [
-  { icon: GithubIcon, label: 'GitHub', href: 'https://github.com/rakshitha-builds' },
-  { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://linkedin.com/in/rakshithar1' },
-  { icon: EmailIcon, label: 'Email', href: 'mailto:rakshitharrakshitha91@gmail.com' },
+const socials = [
+  { icon: GithubIcon, label: 'GitHub', href: site.links.github },
+  { icon: LinkedinIcon, label: 'LinkedIn', href: site.links.linkedin },
+  { icon: EmailIcon, label: 'Email', href: `mailto:${site.email}` },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="max-w-wrap mx-auto px-8 grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-8 md:gap-12 py-16 md:py-16 pb-11">
+    <footer className="bg-page">
+      <div className="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <span className="font-logo font-extrabold text-2xl" style={{ color: '#39c1ff' }}>Rakshitha R</span>
-          <p className="text-dim text-sm mt-4 mb-5 max-w-[320px] leading-relaxed">
-            MCA graduate building full-stack &amp; mobile software — from campus operations platforms to retail ERPs.
+          <a href="#home" className="flex w-fit items-center gap-2.5" aria-label={`${site.name}, back to top`}>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/40 font-display text-[17px] font-bold leading-none">
+              R
+            </span>
+            <span className="text-[16px] font-semibold tracking-tight">{site.name}</span>
+          </a>
+          <p className="mt-5 max-w-[340px] text-[15px] leading-relaxed text-muted">
+            Software developer building full-stack and mobile applications, from campus operations platforms to retail
+            inventory systems.
           </p>
-          <span
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-[13.5px] font-medium"
-            style={{ background: 'rgba(84,216,193,0.12)', border: '1px solid rgba(84,216,193,0.35)', color: '#54d8c1' }}
-          >
-            <span className="w-[7px] h-[7px] rounded-full bg-accent2" />
-            Open to Software Development Opportunities
-          </span>
+          <p className="mt-5 inline-flex items-center gap-2.5 rounded-full border border-line-strong px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-muted">
+            <span className="h-[7px] w-[7px] rounded-full bg-good" aria-hidden="true" />
+            Open for opportunities
+          </p>
         </div>
 
-        <div className="flex flex-col gap-3">
-          <div className="font-mono text-[11.5px] text-faint uppercase tracking-wide mb-2">Navigation</div>
-          {navLinks.map((l) => (
-            <a key={l.href} href={l.href} className="text-dim text-[14.5px] hover:text-accent2 transition-colors w-fit">
-              {l.label}
-            </a>
-          ))}
-        </div>
+        <nav aria-label="Footer">
+          <h2 className="label mb-4 !text-muted">Navigation</h2>
+          <ul className="space-y-3">
+            {navLinks.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="text-[15px] transition-colors hover:text-accent">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <div className="flex flex-col gap-3">
-          <div className="font-mono text-[11.5px] text-faint uppercase tracking-wide mb-2">Social</div>
-          {socialLinks.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target={s.href.startsWith('http') ? '_blank' : undefined}
-              rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="flex items-center gap-2.5 text-dim text-[14.5px] hover:text-accent2 transition-colors w-fit"
-            >
-              <s.icon />
-              {s.label}
-            </a>
-          ))}
+        <div>
+          <h2 className="label mb-4 !text-muted">Connect</h2>
+          <ul className="space-y-3">
+            {socials.map((s) => (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  target={s.href.startsWith('http') ? '_blank' : undefined}
+                  rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="inline-flex items-center gap-2.5 text-[15px] transition-colors hover:text-accent"
+                >
+                  <s.icon /> {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
-      <div className="max-w-wrap mx-auto px-8 flex items-center justify-between flex-wrap gap-4 py-6 border-t border-border">
-        <p className="text-faint text-[13px]">© 2026 Rakshitha R.</p>
-        <a
-          href="#home"
-          className="inline-flex items-center gap-2 text-[13px] font-semibold text-dim hover:text-accent2 border border-border-strong hover:border-accent2 rounded-full px-4 py-2 transition-colors"
-        >
-          Back to top <ArrowUp size={13} />
-        </a>
+      <div className="border-t border-line">
+        <div className="wrap flex flex-wrap items-center justify-between gap-4 py-6">
+          <p className="text-[13px] text-muted">© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <a
+            href="#home"
+            className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-paper px-4 py-2 text-[13px] font-semibold transition duration-200 hover:border-accent hover:text-accent"
+          >
+            Back to top <ArrowUp size={13} aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </footer>
   );

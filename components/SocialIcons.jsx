@@ -33,16 +33,3 @@ export function EmailIcon(props) {
     </svg>
   );
 }
-
-// Brand logo via devicon CDN — used for skill pills
-export function BrandIcon({ name, alt = '', invert = false, className = '' }) {
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}`}
-      alt={alt}
-      className={`${className} ${invert ? 'invert' : ''}`}
-      loading="lazy"
-    />
-  );
-}
