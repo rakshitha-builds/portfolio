@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --page: 234 239 246;
+  --paper: 248 250 253;
+  --mist: 221 229 240;
+  --ink: 15 26 46;
+  --muted: 88 102 125;
+  --accent: 31 95 209;
+}
+html.dark {
+  --page: 10 16 29;
+  --paper: 19 29 49;
+  --mist: 28 41 66;
+  --ink: 234 240 251;
+  --muted: 154 170 196;
+  --accent: 79 140 235;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  background: rgb(var(--page));
+  color-scheme: light;
+  font-synthesis: none;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: rgb(var(--page));
+  color: rgb(var(--ink));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.22);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.on-dark :focus-visible,
+.on-dark:focus-visible {
+  outline-color: #6db1ff;
+}
+
+/* Circle cursor: only enabled on devices with a precise pointer (see CustomCursor) */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select {
+  cursor: text !important;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold transition duration-200;
+  }
+  .btn-primary {
+    @apply bg-accent text-white hover:-translate-y-0.5 hover:bg-[#1747a3];
+  }
+  .btn-outline {
+    @apply border border-line-strong text-ink hover:-translate-y-0.5 hover:border-accent hover:text-accent;
+  }
+  .btn-outline-dark {
+    @apply border border-white/25 text-on-dark hover:-translate-y-0.5 hover:border-accent-bright hover:text-accent-bright;
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-lg border border-line bg-paper px-3 py-1.5 text-[13px] font-medium text-ink;
+  }
+  .label {
+    @apply text-[11.5px] font-bold uppercase tracking-[0.14em] text-accent;
+  }
+  .section-y {
+    @apply py-24 md:py-32;
+  }
+  .wrap {
+    @apply mx-auto w-full max-w-wrap px-5 sm:px-8;
+  }
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
