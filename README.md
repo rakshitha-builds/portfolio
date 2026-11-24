@@ -5,7 +5,7 @@
 npm install
 npm run dev
 ```
-Visit http://localhost:3000
+Visit https://rakshitha-r.vercel.app
 
 ## Production build (static export)
 ```
